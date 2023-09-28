@@ -1,4 +1,6 @@
-﻿namespace MoreApps
+﻿
+
+namespace MoreApps
 {
     public partial class MainPage : ContentPage
     {

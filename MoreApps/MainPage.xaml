@@ -2,25 +2,25 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:MoreApps.ViewModels"
              x:Class="MoreApps.MainPage" >
+    <ContentPage.BindingContext>
+        <local:MainViewModel />
+    </ContentPage.BindingContext>
 
-  
     <Shell.TitleView>
         <HorizontalStackLayout
             Spacing="25"
-            Padding="10">
+            Padding="8">
             <toolkit:AvatarView 
                 Text="ZS" 
                 Padding="5"
                 BackgroundColor="Gray"/>
-            <Label  TextColor ="White" >
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Good morning,"/>
-                        <Span Text="Bety!" FontAttributes="Bold" FontSize="Large"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+            <Label  TextColor ="White"
+                    TextType="Html"
+                    MaxLines="2"
+                    Margin="0,0,0,2"
+                    Text="{Binding Account.Name}"/>
         </HorizontalStackLayout>
         
     </Shell.TitleView>
@@ -33,19 +33,17 @@
             <ScrollView Padding="0,20,0,0">
                 <Frame BackgroundColor="{StaticResource White}" CornerRadius="10" Margin="30,0,30,0">
 
-                    <Grid ColumnDefinitions="3,*, 20"
-                          RowDefinitions="30,30,10,1,auto"
+                    <Grid ColumnDefinitions="*, 20"
+                          RowDefinitions="30,30,10,0.8,auto"
                           ColumnSpacing="15"
                           RowSpacing="0">
-                        <BoxView BackgroundColor="{StaticResource Primary}"
-                                 Grid.Column="0"
-                                 Grid.RowSpan="2"/>
-                        <Label Text="Saldo geral" 
-                               Grid.Column="1"
+                        <Label Text="overall balance" 
+                               Grid.Column="0"
                                Grid.Row="0"/>
-                        <Label Text="R$ 4.500,00" 
+                        <Label Text="{Binding Account.Value}" 
                                FontAttributes="Bold"
-                               Grid.Column="1"
+                               FontSize="Large"
+                               Grid.Column="0"
                                Grid.Row="1"/>
                         <ImageButton Source="ic_logo.svg"
                                      Grid.Column="2"
