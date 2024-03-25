@@ -34,18 +34,19 @@
                 <Frame BackgroundColor="{StaticResource White}" CornerRadius="10" Margin="30,0,30,0">
 
                     <Grid ColumnDefinitions="*, 20"
-                          RowDefinitions="30,30,10,0.8,auto"
+                          RowDefinitions="30,30,10,0.8,auto,auto"
                           ColumnSpacing="15"
                           RowSpacing="0">
                         <Label Text="overall balance" 
                                Grid.Column="0"
                                Grid.Row="0"/>
-                        <Label Text="{Binding Account.Value}" 
+                        <Label Text="{Binding Account.Sum, StringFormat='{0:C2}'}" 
                                FontAttributes="Bold"
                                FontSize="Large"
                                Grid.Column="0"
                                Grid.Row="1"/>
-                        <ImageButton Source="ic_logo.svg"
+                        <ImageButton Source="{Binding ShowOrHideImage}"
+                                     Command="{Binding ShowOrHideCommand}"
                                      Grid.Column="2"
                                      Grid.Row="0"
                                      Grid.RowSpan="2"/>
@@ -53,12 +54,52 @@
                                  Grid.Column="0"
                                  Grid.Row="3"
                                  Grid.ColumnSpan="3"/>
-                        <Label Text="Meus saldos" 
+                        <Label Text="Minhas contas" 
                                Margin="0,20,0,0"
                                FontAttributes="Bold"
                                Grid.Column="0"
                                Grid.ColumnSpan="2"
                                Grid.Row="4"/>
+                        <StackLayout Grid.Column="0" 
+                                     Grid.Row="5" 
+                                     Grid.ColumnSpan="2"
+                                     Orientation="Vertical"
+                                     Spacing="10"
+                                     Padding="10">
+                            <ListView x:Name="myList" 
+                                      HasUnevenRows="True"
+                                      ItemsSource="{Binding listAccount}"
+                                      SelectionMode="Single">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid ColumnDefinitions="30,*,50" 
+                                                  RowDefinitions="auto"
+                                                  ColumnSpacing="5"
+                                                  Padding="5">
+                                                <Image Source="{Binding LogoBank}" Grid.Column="0" />
+                                                <Label Text="{Binding Bank}" Grid.Column="1" VerticalTextAlignment="Center" />
+                                                <Label Text="{Binding Cash}" FontAttributes="Bold" VerticalTextAlignment="Center" Grid.Column="2" />
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>                               
+                            </ListView>
+                            <Frame HeightRequest="30" 
+                                   WidthRequest="150"
+                                   Padding="5"
+                                   HorizontalOptions="StartAndExpand"
+                                   BackgroundColor="Green"
+                                   Margin="0,20,0,0">
+                                <StackLayout>
+                                    <Label Text="Gerenciar contas" 
+                                           TextColor="White"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </Frame>
+                           
+                        </StackLayout>
                     </Grid>
 
                 </Frame>

@@ -48,10 +48,24 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Resources\Images\bb.svg" />
+	  <None Remove="Resources\Images\exibir.png" />
+	  <None Remove="Resources\Images\nexibir.png" />
+	  <None Remove="Resources\Images\nubank.svg" />
+	</ItemGroup>
+
 	
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+	</ItemGroup>
+
+	
+	<ItemGroup>
+	  <MauiXaml Update="Views\FinanceView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
